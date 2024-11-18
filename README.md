@@ -1,6 +1,6 @@
 # Website UKM PENRISTEK Universitas Terbuka
 
-Website resmi Unit Kegiatan Mahasiswa Penelitian, Riset dan Teknologi (PENRISTEK) Universitas Terbuka. Dibangun menggunakan [Next.js](https://nextjs.org) dan [Shadcn/ui](https://ui.shadcn.com/).
+Website resmi Unit Kegiatan Mahasiswa Pendidikan, Riset dan Teknologi (PENRISTEK) Universitas Terbuka. Dibangun menggunakan [Next.js](https://nextjs.org) dan [Shadcn/ui](https://ui.shadcn.com/).
 
 ## Tentang UKM PENRISTEK
 
