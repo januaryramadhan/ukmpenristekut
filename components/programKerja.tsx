@@ -1,4 +1,4 @@
-import { Check, Book, Users, PenTool, Brain, Presentation, Code } from "lucide-react";
+import { Book, Users, PenTool, Brain, Presentation, Code } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export const ProgramKerja = () => (

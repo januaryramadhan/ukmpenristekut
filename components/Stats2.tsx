@@ -1,4 +1,4 @@
-import { MoveUpRight, Users, Award, BookOpen, Target } from "lucide-react";
+import { Users, Award, BookOpen, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export const Stats2 = () => (
