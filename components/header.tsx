@@ -2,175 +2,193 @@
 
 import { Button } from "@/components/ui/button";
 import {
-NavigationMenu,
-NavigationMenuContent,
-NavigationMenuItem,
-NavigationMenuLink,
-NavigationMenuList,
-NavigationMenuTrigger,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Menu, MoveRight, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import { ModeToggle } from "./mode-toggle";
 
 export const Header1 = () => {
-const navigationItems = [
+  const navigationItems = [
     {
-    title: "Home",
-    href: "/",
-    description: "",
+      title: "Beranda",
+      href: "/",
+      description: "",
     },
     {
-    title: "Product",
-    description: "Managing a small business today is already tough.",
-    items: [
+      title: "Program Kerja",
+      description: "Program kerja unggulan UKM PENRISTEK UT",
+      items: [
         {
-        title: "Reports",
-        href: "/reports",
+          title: "Pelatihan IT",
+          href: "/pelatihan-it",
         },
         {
-        title: "Statistics",
-        href: "/statistics",
+          title: "Webinar Teknologi",
+          href: "/webinar",
         },
         {
-        title: "Dashboards",
-        href: "/dashboards",
+          title: "Kompetisi IT",
+          href: "/kompetisi",
         },
         {
-        title: "Recordings",
-        href: "/recordings",
+          title: "Workshop",
+          href: "/workshop",
         },
-    ],
+      ],
     },
     {
-    title: "Company",
-    description: "Managing a small business today is already tough.",
-    items: [
+      title: "Tentang Kami",
+      description: "Mengenal lebih dekat UKM PENRISTEK UT",
+      items: [
         {
-        title: "About us",
-        href: "/about",
+          title: "Profil",
+          href: "/profil",
         },
         {
-        title: "Fundraising",
-        href: "/fundraising",
+          title: "Visi & Misi",
+          href: "/visi-misi",
         },
         {
-        title: "Investors",
-        href: "/investors",
+          title: "Struktur Organisasi",
+          href: "/struktur",
         },
         {
-        title: "Contact us",
-        href: "/contact",
+          title: "Kontak",
+          href: "/kontak",
         },
-    ],
+      ],
     },
-];
+  ];
 
-const [isOpen, setOpen] = useState(false);
-return (
-    <header className="w-full z-40 fixed top-0 left-0 bg-background">
-    <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center">
-        <div className="justify-start items-center gap-4 lg:flex hidden flex-row">
-        <NavigationMenu className="flex justify-start items-start">
-            <NavigationMenuList className="flex justify-start gap-4 flex-row">
-            {navigationItems.map((item) => (
+  const [isOpen, setOpen] = useState(false);
+
+  return (
+    <header className="w-full z-40 fixed top-0 left-0 bg-background px-4">
+      <div className="container relative mx-auto min-h-16 md:min-h-20 flex items-center justify-between px-4">
+        {/* Logo */}
+        <div className="flex items-center">
+          <p className="font-semibold text-sm md:text-base">UKM PENRISTEK UT</p>
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-8">
+          <NavigationMenu>
+            <NavigationMenuList className="flex gap-4">
+              {navigationItems.map((item) => (
                 <NavigationMenuItem key={item.title}>
-                {item.href ? (
-                    <>
-                    <NavigationMenuLink>
-                        <Button variant="ghost">{item.title}</Button>
-                    </NavigationMenuLink>
-                    </>
-                ) : (
-                    <>
-                    <NavigationMenuTrigger className="font-medium text-sm">
+                  {item.href ? (
+                    <Link href={item.href} legacyBehavior passHref>
+                      <NavigationMenuLink className="hover:text-primary">
                         {item.title}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent className="!w-[450px] p-4">
-                        <div className="flex flex-col lg:grid grid-cols-2 gap-4">
-                        <div className="flex flex-col h-full justify-between">
-                            <div className="flex flex-col">
-                            <p className="text-base">{item.title}</p>
-                            <p className="text-muted-foreground text-sm">
-                                {item.description}
+                      </NavigationMenuLink>
+                    </Link>
+                  ) : (
+                    <>
+                      <NavigationMenuTrigger>
+                        {item.title}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="w-[280px] md:w-[450px] p-4">
+                        <div className="flex flex-col gap-4">
+                          <div>
+                            <p className="font-medium">{item.title}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {item.description}
                             </p>
-                            </div>
-                            <Button size="sm" className="mt-10">
-                            Book a call today
-                            </Button>
-                        </div>
-                        <div className="flex flex-col text-sm h-full justify-end">
+                          </div>
+                          <div className="flex flex-col gap-2">
                             {item.items?.map((subItem) => (
-                            <NavigationMenuLink
+                              <Link
                                 href={subItem.href}
                                 key={subItem.title}
-                                className="flex flex-row justify-between items-center hover:bg-muted py-2 px-4 rounded"
-                            >
-                                <span>{subItem.title}</span>
+                                className="flex items-center justify-between p-2 hover:bg-muted rounded-md"
+                              >
+                                <span className="text-sm">{subItem.title}</span>
                                 <MoveRight className="w-4 h-4 text-muted-foreground" />
-                            </NavigationMenuLink>
+                              </Link>
                             ))}
+                          </div>
                         </div>
-                        </div>
-                    </NavigationMenuContent>
+                      </NavigationMenuContent>
                     </>
-                )}
+                  )}
                 </NavigationMenuItem>
-            ))}
+              ))}
             </NavigationMenuList>
-        </NavigationMenu>
+          </NavigationMenu>
+
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="sm">
+              Informasi
+            </Button>
+            <div className="h-6 border-r border-border" />
+            <ModeToggle />
+            <Button size="sm">Daftar</Button>
+          </div>
         </div>
-        <div className="flex lg:justify-center">
-        <p className="font-semibold">TWBlocks</p>
-        </div>
-        <div className="flex justify-end w-full gap-4">
-        <Button variant="ghost" className="hidden md:inline">
-            Book a demo
-        </Button>
-        <div className="border-r hidden md:inline"></div>
-        <Button variant="outline">Sign in</Button>
-        <Button>Get started</Button>
-        </div>
-        <div className="flex w-12 shrink lg:hidden items-end justify-end">
-        <Button variant="ghost" onClick={() => setOpen(!isOpen)}>
+
+        {/* Mobile Menu Button */}
+
+        <div className="lg:hidden">
+          <ModeToggle />
+          <Button variant="ghost" size="sm" onClick={() => setOpen(!isOpen)}>
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </Button>
-        {isOpen && (
-            <div className="absolute top-20 border-t flex flex-col w-full right-0 bg-background shadow-lg py-4 container gap-8">
-            {navigationItems.map((item) => (
-                <div key={item.title}>
-                <div className="flex flex-col gap-2">
-                    {item.href ? (
-                    <Link
-                        href={item.href}
-                        className="flex justify-between items-center"
-                    >
-                        <span className="text-lg">{item.title}</span>
-                        <MoveRight className="w-4 h-4 stroke-1 text-muted-foreground" />
-                    </Link>
-                    ) : (
-                    <p className="text-lg">{item.title}</p>
-                    )}
-                    {item.items &&
-                    item.items.map((subItem) => (
-                        <Link
-                        key={subItem.title}
-                        href={subItem.href}
-                        className="flex justify-between items-center"
-                        >
-                        <span className="text-muted-foreground">
-                            {subItem.title}
-                        </span>
-                        <MoveRight className="w-4 h-4 stroke-1" />
-                        </Link>
-                    ))}
-                </div>
-                </div>
-            ))}
-            </div>
-        )}
+          </Button>
         </div>
-    </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="absolute top-full left-0 right-0 bg-background border-t border-border">
+            <div className="container px-4 py-4 flex flex-col gap-4">
+              {navigationItems.map((item) => (
+                <div key={item.title} className="space-y-2">
+                  {item.href ? (
+                    <Link
+                      href={item.href}
+                      className="flex items-center justify-between py-2"
+                      onClick={() => setOpen(false)}
+                    >
+                      <span className="text-sm font-medium">{item.title}</span>
+                      <MoveRight className="w-4 h-4 text-muted-foreground" />
+                    </Link>
+                  ) : (
+                    <>
+                      <p className="text-sm font-medium">{item.title}</p>
+                      <div className="pl-4 space-y-2">
+                        {item.items?.map((subItem) => (
+                          <Link
+                            key={subItem.title}
+                            href={subItem.href}
+                            className="flex items-center justify-between py-2"
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="text-sm text-muted-foreground">
+                              {subItem.title}
+                            </span>
+                            <MoveRight className="w-4 h-4 text-muted-foreground" />
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
+
+              <div className="pt-4 space-y-2">
+                <Button className="w-full" size="sm">
+                  Daftar
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </header>
-);
+  );
 };
